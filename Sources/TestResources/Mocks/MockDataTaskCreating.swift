@@ -12,7 +12,7 @@ public class MockDataTaskCreating: DataTaskCreating {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let createDataTaskWithRequestCalled = Method(rawValue: 1)
+        public static let createDataTaskWithRequestCalled = Method(rawValue: 1)
     }
     private(set) public var calledMethods = Method()
 

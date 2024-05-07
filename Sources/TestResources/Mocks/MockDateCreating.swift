@@ -14,8 +14,8 @@ public class MockDateCreating: DateCreating {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let now = Method(rawValue: 1)
-        static let dateTimeIntervalSinceNowCalled = Method(rawValue: 2)
+        public static let now = Method(rawValue: 1)
+        public static let dateTimeIntervalSinceNowCalled = Method(rawValue: 2)
     }
     private(set) public var calledMethods = Method()
 
@@ -24,7 +24,7 @@ public class MockDateCreating: DateCreating {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let timeIntervalSinceNow = MethodParameter(rawValue: 1)
+        public static let timeIntervalSinceNow = MethodParameter(rawValue: 1)
     }
     private(set) public var assignedParameters = MethodParameter()
 

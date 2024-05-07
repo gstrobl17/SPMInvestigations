@@ -12,8 +12,8 @@ public class MockJSONSerializing: JSONSerializing {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let dataWithJSONObjectObjOptionsOptCalled = StaticMethod(rawValue: 1 << 0)
-        static let jsonObjectWithDataOptionsOptCalled = StaticMethod(rawValue: 1 << 1)
+        public static let dataWithJSONObjectObjOptionsOptCalled = StaticMethod(rawValue: 1 << 0)
+        public static let jsonObjectWithDataOptionsOptCalled = StaticMethod(rawValue: 1 << 1)
     }
     private(set) public static var calledStaticMethods = StaticMethod()
 
@@ -22,10 +22,10 @@ public class MockJSONSerializing: JSONSerializing {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let obj = StaticMethodParameter(rawValue: 1 << 0)
-        static let opt = StaticMethodParameter(rawValue: 1 << 1)
-        static let data = StaticMethodParameter(rawValue: 1 << 2)
-        static let opt1 = StaticMethodParameter(rawValue: 1 << 3)
+        public static let obj = StaticMethodParameter(rawValue: 1 << 0)
+        public static let opt = StaticMethodParameter(rawValue: 1 << 1)
+        public static let data = StaticMethodParameter(rawValue: 1 << 2)
+        public static let opt1 = StaticMethodParameter(rawValue: 1 << 3)
     }
     private(set) public static var assignedStaticParameters = StaticMethodParameter()
 

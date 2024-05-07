@@ -16,7 +16,7 @@ public class MockJSONDecoding: JSONDecoding {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let decodeTypeFromDataCalled = Method(rawValue: 1 << 0)
+        public static let decodeTypeFromDataCalled = Method(rawValue: 1 << 0)
     }
     private(set) public var calledMethods = Method()
 
@@ -25,8 +25,8 @@ public class MockJSONDecoding: JSONDecoding {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let type = MethodParameter(rawValue: 1 << 0)
-        static let data = MethodParameter(rawValue: 1 << 1)
+        public static let type = MethodParameter(rawValue: 1 << 0)
+        public static let data = MethodParameter(rawValue: 1 << 1)
     }
     private(set) public var assignedParameters = MethodParameter()
 

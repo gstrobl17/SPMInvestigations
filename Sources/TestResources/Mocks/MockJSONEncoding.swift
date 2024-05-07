@@ -12,7 +12,7 @@ public class MockJSONEncoding: JSONEncoding {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let encodeValueCalled = Method(rawValue: 1 << 0)
+        public static let encodeValueCalled = Method(rawValue: 1 << 0)
     }
     private(set) var calledMethods = Method()
 
@@ -21,7 +21,7 @@ public class MockJSONEncoding: JSONEncoding {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let value = MethodParameter(rawValue: 1 << 0)
+        public static let value = MethodParameter(rawValue: 1 << 0)
     }
     private(set) public var assignedParameters = MethodParameter()
 

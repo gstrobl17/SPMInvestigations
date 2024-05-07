@@ -12,9 +12,9 @@ public class MockCookieStoring: CookieStoring {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let setCookieCookieCalled = Method(rawValue: 1 << 0)
-        static let deleteCookieCookieCalled = Method(rawValue: 1 << 1)
-        static let cookiesForURLCalled = Method(rawValue: 1 << 2)
+        public static let setCookieCookieCalled = Method(rawValue: 1 << 0)
+        public static let deleteCookieCookieCalled = Method(rawValue: 1 << 1)
+        public static let cookiesForURLCalled = Method(rawValue: 1 << 2)
     }
     private(set) public var calledMethods = Method()
 
@@ -23,8 +23,8 @@ public class MockCookieStoring: CookieStoring {
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
-        static let cookie = MethodParameter(rawValue: 1 << 0)
-        static let URL = MethodParameter(rawValue: 1 << 1)
+        public static let cookie = MethodParameter(rawValue: 1 << 0)
+        public static let URL = MethodParameter(rawValue: 1 << 1)
     }
     private(set) public var assignedParameters = MethodParameter()
 
