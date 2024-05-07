@@ -3,6 +3,8 @@ import Foundation
 
 public class MockDataTaskCreating: DataTaskCreating {
 
+    public init() { }
+
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {

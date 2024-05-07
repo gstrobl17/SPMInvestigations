@@ -2,6 +2,8 @@
 import Foundation
 
 public class MockCookieStoring: CookieStoring {
+    
+    public init() { }
 
     // MARK: - Variables for Trackings Method Invocation
 

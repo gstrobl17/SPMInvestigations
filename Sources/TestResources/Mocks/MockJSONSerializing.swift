@@ -3,6 +3,8 @@ import Foundation
 
 public class MockJSONSerializing: JSONSerializing {
 
+    public init() { }
+
     // MARK: - Variables for Trackings Method Invocation
 
     public struct StaticMethod: OptionSet {

@@ -3,6 +3,8 @@ import Foundation
 
 public class MockDataTask: NSObject, DataTask {
 
+    public init() { }
+
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {

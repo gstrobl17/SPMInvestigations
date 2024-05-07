@@ -7,6 +7,8 @@ public enum MockJSONDecodingError: Error {
 
 public class MockJSONDecoding: JSONDecoding {
 
+    public init() { }
+
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {

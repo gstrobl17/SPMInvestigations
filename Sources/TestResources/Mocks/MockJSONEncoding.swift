@@ -3,6 +3,8 @@ import Foundation
 
 public class MockJSONEncoding: JSONEncoding {
 
+    public init() { }
+
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {

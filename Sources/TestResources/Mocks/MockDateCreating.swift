@@ -5,6 +5,8 @@ public class MockDateCreating: DateCreating {
     
     public var baseDate = Date(timeIntervalSince1970: 0)
 
+    public init() { }
+
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {
