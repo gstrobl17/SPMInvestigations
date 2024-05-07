@@ -3,7 +3,7 @@ import Foundation
 
 public class MockDataTask: NSObject, DataTask {
 
-    public init() { }
+    public override init() { }
 
     // MARK: - Variables for Trackings Method Invocation
 
