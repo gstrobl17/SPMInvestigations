@@ -5,17 +5,26 @@ import PackageDescription
 
 let package = Package(
     name: "FoundationAbstractions",
+    platforms: [
+        .iOS(.v15)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "FoundationAbstractions",
             targets: ["FoundationAbstractions"]),
+        .library(
+            name: "TestResources",
+            targets: ["TestResources"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "FoundationAbstractions"),
+        .target(
+            name: "TestResources",
+            dependencies: ["FoundationAbstractions"]),
         .testTarget(
             name: "FoundationAbstractionsTests",
             dependencies: ["FoundationAbstractions"]),
