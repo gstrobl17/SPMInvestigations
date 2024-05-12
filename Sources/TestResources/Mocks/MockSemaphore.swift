@@ -1,19 +1,24 @@
 @testable import FoundationAbstractions
 import Foundation
 
-public class MockDataTask: NSObject, DataTask {
+public class MockSemaphore: FoundationAbstractions.Semaphore {
 
-    public override init() { }
+    public init() { }
 
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {
         public let rawValue: UInt
         public init(rawValue: UInt) { self.rawValue = rawValue }
-        public static let cancelCalled = Method(rawValue: 1 << 0)
-        public static let resumeCalled = Method(rawValue: 1 << 1)
+        public static let signalCalled = Method(rawValue: 1 << 0)
+        public static let waitCalled = Method(rawValue: 1 << 1)
     }
     private(set) public var calledMethods = Method()
+
+    // MARK: - Variables to Use as Method Return Values
+
+    public var signalReturnValue = 0
+
 
     public func reset() {
         calledMethods = []
@@ -21,17 +26,18 @@ public class MockDataTask: NSObject, DataTask {
 
     // MARK: - Methods for Protocol Conformance
 
-    public func cancel() {
-        calledMethods.insert(.cancelCalled)
+    public func signal() -> Int {
+        calledMethods.insert(.signalCalled)
+        return signalReturnValue
     }
 
-    public func resume() {
-        calledMethods.insert(.resumeCalled)
+    public func wait() {
+        calledMethods.insert(.waitCalled)
     }
 
 }
 
-extension MockDataTask.Method: CustomStringConvertible {
+extension MockSemaphore.Method: CustomStringConvertible {
     public var description: String {
         var value = "["
         var first = true
@@ -43,13 +49,13 @@ extension MockDataTask.Method: CustomStringConvertible {
             }
         }
 
-        if self.contains(.cancelCalled) {
+        if self.contains(.signalCalled) {
             handleFirst()
-            value += ".cancelCalled"
+            value += ".signalCalled"
         }
-        if self.contains(.resumeCalled) {
+        if self.contains(.waitCalled) {
             handleFirst()
-            value += ".resumeCalled"
+            value += ".waitCalled"
         }
 
         value += "]"

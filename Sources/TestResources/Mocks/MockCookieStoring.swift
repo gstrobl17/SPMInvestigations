@@ -2,16 +2,14 @@
 import Foundation
 
 public class MockCookieStoring: CookieStoring {
-    
+
     public init() { }
 
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
         public static let setCookieCookieCalled = Method(rawValue: 1 << 0)
         public static let deleteCookieCookieCalled = Method(rawValue: 1 << 1)
         public static let cookiesForURLCalled = Method(rawValue: 1 << 2)
@@ -19,10 +17,8 @@ public class MockCookieStoring: CookieStoring {
     private(set) public var calledMethods = Method()
 
     public struct MethodParameter: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
         public static let cookie = MethodParameter(rawValue: 1 << 0)
         public static let URL = MethodParameter(rawValue: 1 << 1)
     }

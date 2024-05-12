@@ -3,28 +3,27 @@ import Foundation
 
 public class MockDateCreating: DateCreating {
     
-    public var baseDate = Date(timeIntervalSince1970: 0)
-
     public init() { }
+
+    // MARK: - Variables for Properties Used for Protocol Conformance
+    // Use these properties to get/set/initialize the properties without registering a method call
+
+    public var _now: Date = Date()
 
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        public static let now = Method(rawValue: 1)
-        public static let dateTimeIntervalSinceNowCalled = Method(rawValue: 2)
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
+        public static let nowGetterCalled = Method(rawValue: 1 << 0)
+        public static let dateTimeIntervalSinceNowCalled = Method(rawValue: 1 << 1)
     }
     private(set) public var calledMethods = Method()
 
     public struct MethodParameter: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        public static let timeIntervalSinceNow = MethodParameter(rawValue: 1)
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
+        public static let timeIntervalSinceNow = MethodParameter(rawValue: 1 << 0)
     }
     private(set) public var assignedParameters = MethodParameter()
 
@@ -32,24 +31,30 @@ public class MockDateCreating: DateCreating {
 
     private(set) public var timeIntervalSinceNow: TimeInterval?
 
+    // MARK: - Variables to Use as Method Return Values
+
+    public var dateTimeIntervalSinceNowReturnValue: Date = Date()
+
     public func reset() {
         calledMethods = []
         assignedParameters = []
         timeIntervalSinceNow = nil
     }
 
-    // MARK: - Methods for Protocol Conformance
+    // MARK: - Properties for Protocol Conformance
 
     public var now: Date {
-        calledMethods.insert(.now)
-        return baseDate
+        calledMethods.insert(.nowGetterCalled)
+        return _now
     }
 
-    public func date(timeIntervalSinceNow interval: TimeInterval) -> Date {
+    // MARK: - Methods for Protocol Conformance
+
+    public func date(timeIntervalSinceNow: TimeInterval) -> Date {
         calledMethods.insert(.dateTimeIntervalSinceNowCalled)
-        self.timeIntervalSinceNow = interval
+        self.timeIntervalSinceNow = timeIntervalSinceNow
         assignedParameters.insert(.timeIntervalSinceNow)
-        return baseDate.addingTimeInterval(interval)
+        return dateTimeIntervalSinceNowReturnValue
     }
 
 }
@@ -66,11 +71,10 @@ extension MockDateCreating.Method: CustomStringConvertible {
             }
         }
 
-        if self.contains(.now) {
+        if self.contains(.nowGetterCalled) {
             handleFirst()
-            value += ".now"
+            value += ".nowGetterCalled"
         }
-
         if self.contains(.dateTimeIntervalSinceNowCalled) {
             handleFirst()
             value += ".dateTimeIntervalSinceNowCalled"

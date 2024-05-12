@@ -8,20 +8,16 @@ public class MockDataTaskCreating: DataTaskCreating {
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        public static let createDataTaskWithRequestCalled = Method(rawValue: 1)
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
+        public static let createDataTaskWithRequestCalled = Method(rawValue: 1 << 0)
     }
     private(set) public var calledMethods = Method()
 
     public struct MethodParameter: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        static let request = MethodParameter(rawValue: 1)
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
+        public static let request = MethodParameter(rawValue: 1 << 0)
     }
     private(set) public var assignedParameters = MethodParameter()
 
@@ -31,9 +27,7 @@ public class MockDataTaskCreating: DataTaskCreating {
 
     // MARK: - Variables to Use as Method Return Values
 
-    //swiftlint:disable implicitly_unwrapped_optional
     public var createDataTaskWithRequestReturnValue: DataTask!
-    //swiftlint:enable implicitly_unwrapped_optional
 
     public func reset() {
         calledMethods = []

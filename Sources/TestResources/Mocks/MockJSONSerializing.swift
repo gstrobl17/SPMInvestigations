@@ -8,20 +8,16 @@ public class MockJSONSerializing: JSONSerializing {
     // MARK: - Variables for Trackings Method Invocation
 
     public struct StaticMethod: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
         public static let dataWithJSONObjectObjOptionsOptCalled = StaticMethod(rawValue: 1 << 0)
         public static let jsonObjectWithDataOptionsOptCalled = StaticMethod(rawValue: 1 << 1)
     }
     private(set) public static var calledStaticMethods = StaticMethod()
 
     public struct StaticMethodParameter: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
         public static let obj = StaticMethodParameter(rawValue: 1 << 0)
         public static let opt = StaticMethodParameter(rawValue: 1 << 1)
         public static let data = StaticMethodParameter(rawValue: 1 << 2)

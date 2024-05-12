@@ -12,19 +12,15 @@ public class MockJSONDecoding: JSONDecoding {
     // MARK: - Variables for Trackings Method Invocation
 
     public struct Method: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
         public static let decodeTypeFromDataCalled = Method(rawValue: 1 << 0)
     }
     private(set) public var calledMethods = Method()
 
     public struct MethodParameter: OptionSet {
-        public let rawValue: Int
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
+        public let rawValue: UInt
+        public init(rawValue: UInt) { self.rawValue = rawValue }
         public static let type = MethodParameter(rawValue: 1 << 0)
         public static let data = MethodParameter(rawValue: 1 << 1)
     }
