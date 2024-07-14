@@ -62,3 +62,14 @@ extension MockSemaphore.Method: CustomStringConvertible {
         return value
     }
 }
+
+extension MockSemaphore: CustomReflectable {
+    public var customMirror: Mirror {
+        Mirror(self,
+               children: [
+                "calledMethods": calledMethods,
+               ],
+               displayStyle: .none
+        )
+    }
+}

@@ -106,3 +106,15 @@ extension MockDateCreating.MethodParameter: CustomStringConvertible {
         return value
     }
 }
+
+extension MockDateCreating: CustomReflectable {
+    public var customMirror: Mirror {
+        Mirror(self,
+               children: [
+                "calledMethods": calledMethods,
+                "assignedParameters": assignedParameters,
+               ],
+               displayStyle: .none
+        )
+    }
+}

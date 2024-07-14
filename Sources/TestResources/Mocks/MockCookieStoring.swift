@@ -125,3 +125,15 @@ extension MockCookieStoring.MethodParameter: CustomStringConvertible {
         return value
     }
 }
+
+extension MockCookieStoring: CustomReflectable {
+    public var customMirror: Mirror {
+        Mirror(self,
+               children: [
+                "calledMethods": calledMethods,
+                "assignedParameters": assignedParameters,
+               ],
+               displayStyle: .none
+        )
+    }
+}

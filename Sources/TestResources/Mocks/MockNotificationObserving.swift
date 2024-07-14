@@ -198,3 +198,15 @@ extension MockNotificationObserving.MethodParameter: CustomStringConvertible {
         return value
     }
 }
+
+extension MockNotificationObserving: CustomReflectable {
+    public var customMirror: Mirror {
+        Mirror(self,
+               children: [
+                "calledMethods": calledMethods,
+                "assignedParameters": assignedParameters,
+               ],
+               displayStyle: .none
+        )
+    }
+}

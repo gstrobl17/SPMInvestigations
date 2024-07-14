@@ -48,7 +48,7 @@ public class MockJSONDecoding: JSONDecoding {
 
     // MARK: - Methods for Protocol Conformance
 
-    public func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable {
+    public func decode<T>(_ type: T.Type, from data: Data) throws -> T where T: Decodable {
         calledMethods.insert(.decodeTypeFromDataCalled)
         self.type = type
         assignedParameters.insert(.type)
@@ -108,5 +108,17 @@ extension MockJSONDecoding.MethodParameter: CustomStringConvertible {
 
         value += "]"
         return value
+    }
+}
+
+extension MockJSONDecoding: CustomReflectable {
+    public var customMirror: Mirror {
+        Mirror(self,
+               children: [
+                "calledMethods": calledMethods,
+                "assignedParameters": assignedParameters,
+               ],
+               displayStyle: .none
+        )
     }
 }

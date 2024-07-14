@@ -137,3 +137,15 @@ extension MockJSONSerializing.StaticMethodParameter: CustomStringConvertible {
         return value
     }
 }
+
+extension MockJSONSerializing: CustomReflectable {
+    public var customMirror: Mirror {
+        Mirror(self,
+               children: [
+                "calledStaticMethods": MockJSONSerializing.calledStaticMethods,
+                "assignedStaticParameters": MockJSONSerializing.assignedStaticParameters,
+               ],
+               displayStyle: .none
+        )
+    }
+}
